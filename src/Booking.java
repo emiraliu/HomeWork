@@ -14,7 +14,7 @@ public class Booking {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
-
+    //abc
     public int getBookingId() {return bookingId;}
     public Room getReservedRoom(){return reservedRoom;}
     public Guest getGuest(){return guest;}
