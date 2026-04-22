@@ -23,6 +23,7 @@ public class Room {
     public void setNightlyRate(double nightlyRate){this.nightlyRate = nightlyRate;}
     public void setAvailable(boolean isAvailable){this.isAvailable = isAvailable;}
 
+    @Override
     public String toString(){
         return "\nRoom Number: " + roomNumber +
                 "\nRoom Type: " + roomType +
