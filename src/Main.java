@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -11,6 +12,13 @@ public class Main {
         Booking booking1 = new Booking(1,room101,cali, LocalDate.now(),LocalDate.of(2026,5,10));
         System.out.println("=================================");
         System.out.println(booking1);
+        System.out.println("/////////////////////////////////");
+        Hotel hotel = new Hotel("MyHotel");
+
+
+
+        hotel.displayAllRooms();
+        hotel.displayAllBookings();
 
     }
 

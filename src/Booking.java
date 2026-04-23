@@ -21,6 +21,7 @@ public class Booking {
     public LocalDate getCheckIn(){return checkIn;}
     public LocalDate getCheckOut(){return checkOut;}
 
+
     @Override
     public String toString(){
         return "Booking Id: " + bookingId +
