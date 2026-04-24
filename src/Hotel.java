@@ -17,8 +17,25 @@ public class Hotel {
     }
 
     public void makeBooking(int bookingId, Room room, Guest guest, LocalDate checkIn, LocalDate checkOut){
-        if (room.isAvailable()){
-            room.setAvailable(false);
+
+        if (!checkOut.isAfter(checkIn)){
+            System.out.println("Invalid dates! Check-out must be after check-in.");
+            return;
+        }
+
+        boolean isRoomAvailable = true;
+        for (Booking booking : bookings){
+            if (booking.getReservedRoom().equals(room)){
+                boolean overlaps = checkIn.isBefore(booking.getCheckOut()) &&
+                        checkOut.isAfter(booking.getCheckIn());
+                if (overlaps){
+                    isRoomAvailable = false;
+                    break;
+                }
+            }
+        }
+
+        if (isRoomAvailable){
             Booking booking = new Booking(bookingId,room,guest,checkIn,checkOut);
             bookings.add(booking);
             System.out.println("Booking Successful.");
@@ -26,10 +43,10 @@ public class Hotel {
             System.out.println("Room " + room.getRoomNumber() + " is not Available!");
         }
     }
+
     public void cancelBooking(int bookingId){
         for (Booking booking : bookings){
             if (booking.getBookingId() == bookingId){
-                booking.getReservedRoom().setAvailable(true);
                 bookings.remove(booking);
                 System.out.println("Booking "+ bookingId + " cancelled.");
                 return;
@@ -37,14 +54,46 @@ public class Hotel {
         }
         System.out.println("Booking not found!");
     }
+
     public void displayAllRooms(){
         for (Room room : rooms) {
-           if (room.isAvailable()) System.out.println("Room Number: " + room.getRoomNumber());
-        };
-    }
-    public void displayAllBookings(){
-        for (Booking booking : bookings){
-            booking.toString();
+            System.out.println(room);
         }
     }
+
+
+//==========================================================
+    public void displayAllAvailableRooms(LocalDate checkIn, LocalDate checkOut) {
+        for (Room room : rooms) {
+
+            boolean available = true;
+
+            for (Booking booking : bookings) {
+                if (booking.getReservedRoom().equals(room)) {
+
+                    boolean overlaps =
+                            checkIn.isBefore(booking.getCheckOut()) &&
+                                    checkOut.isAfter(booking.getCheckIn());
+
+                    if (overlaps) {
+                        available = false;
+                        break;
+                    }
+                }
+            }
+
+            if (available) {
+                System.out.println(room.toString());
+            }
+        }
+    }
+//===========================================
+
+    public void displayAllBookings(){
+        for (Booking booking : bookings){
+            System.out.println(booking + "\n");
+        }
+        System.out.println(" ");
+    }
+
 }
