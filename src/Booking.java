@@ -1,4 +1,6 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Booking {
     private int bookingId;
@@ -14,7 +16,7 @@ public class Booking {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
-    //abc
+
     public int getBookingId() {return bookingId;}
     public Room getReservedRoom(){return reservedRoom;}
     public Guest getGuest(){return guest;}
@@ -31,4 +33,9 @@ public class Booking {
                 "\nCheck-Out: " + checkOut;
     }
 
+    public BigDecimal calculateTotalCost( ){
+        long nights = ChronoUnit.DAYS.between(checkIn,checkOut);
+        BigDecimal totalCost = getReservedRoom().getNightlyRate().multiply(BigDecimal.valueOf(nights));
+        return totalCost;
+    }
 }
