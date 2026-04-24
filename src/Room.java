@@ -1,14 +1,16 @@
+import java.math.BigDecimal;
+
 public class Room {
     private int roomNumber;
     private String roomType;
-    private double nightlyRate;
+    private BigDecimal nightlyRate;
     private boolean isAvailable;
 
     public Room(){
 
     }
 
-    public Room(int roomNumber,String roomType,double nightlyRate){
+    public Room(int roomNumber,String roomType,BigDecimal nightlyRate){
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.nightlyRate = nightlyRate;
@@ -17,10 +19,10 @@ public class Room {
 
     public int getRoomNumber(){return roomNumber;}
     public String getRoomType(){return roomType;}
-    public double getNightlyRate(){return nightlyRate;}
+    public BigDecimal getNightlyRate(){return nightlyRate;}
     public boolean isAvailable(){return isAvailable;}
     public void setRoomType(String roomType){this.roomType = roomType;}
-    public void setNightlyRate(double nightlyRate){this.nightlyRate = nightlyRate;}
+    public void setNightlyRate(BigDecimal nightlyRate){this.nightlyRate = nightlyRate;}
     public void setAvailable(boolean isAvailable){this.isAvailable = isAvailable;}
 
     @Override
