@@ -1,6 +1,7 @@
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-public class Room {
+public class Room implements Bookable{
     private int roomNumber;
     private String roomType;
     private BigDecimal nightlyRate;
@@ -41,4 +42,14 @@ public class Room {
         return this.roomNumber == other.roomNumber;
     }
 
+    //=================================================Fix this
+    @Override
+    public boolean isBookedForDates(LocalDate checkIn, LocalDate checkOut) {
+        return false;
+    }
+
+    @Override
+    public void markAsBooked() {
+
+    }
 }

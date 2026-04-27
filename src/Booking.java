@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Booking {
+public class Booking implements Chargeable{
     private int bookingId;
     private Room reservedRoom;
     private Guest guest;
@@ -37,5 +37,11 @@ public class Booking {
         long nights = ChronoUnit.DAYS.between(checkIn,checkOut);
         BigDecimal totalCost = getReservedRoom().getNightlyRate().multiply(BigDecimal.valueOf(nights));
         return totalCost;
+    }
+
+    //===================================Fix This
+    @Override
+    public BigDecimal calculateCost() {
+        return null;
     }
 }
