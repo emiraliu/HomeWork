@@ -42,14 +42,13 @@ public class Room implements Bookable{
         return this.roomNumber == other.roomNumber;
     }
 
-    //=================================================Fix this
     @Override
     public boolean isBookedForDates(LocalDate checkIn, LocalDate checkOut) {
-        return false;
+        return !isAvailable;
     }
 
     @Override
     public void markAsBooked() {
-
+        this.isAvailable = false;
     }
 }

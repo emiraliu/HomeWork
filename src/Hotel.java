@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -5,12 +6,17 @@ public class Hotel {
     private String hotelName;
     private ArrayList<Room> rooms;
     private ArrayList<Booking> bookings;
+    private ArrayList<HotelService> services;
+    private ArrayList<Staff> staff;
+
 
     public Hotel(){}
     public Hotel(String hotelName){
         this.hotelName = hotelName;
-        rooms = new ArrayList<>();
-        bookings = new ArrayList<>();
+        this.rooms = new ArrayList<>();
+        this.bookings = new ArrayList<>();
+        this.services = new ArrayList<>();
+        this.staff = new ArrayList<>();
     }
     public void addNewRoom(Room room){
         rooms.add(room);
@@ -95,5 +101,34 @@ public class Hotel {
         }
         System.out.println(" ");
     }
+
+    public void addService(HotelService service){
+        this.services.add(service);
+    }
+    public void addStaff(Staff staff){
+        this.staff.add(staff);
+    }
+    public void displayAllServices(){
+        for (HotelService service : services){
+            System.out.println(service);
+        }
+    }
+    public void displayAllStaff(){
+        for (Staff staff1 : staff){
+            System.out.println(staff1);
+        }
+    }
+
+    public BigDecimal calculateTotalCharge(ArrayList<Chargeable> chargeableItems){
+        BigDecimal total = BigDecimal.ZERO;
+        for (Chargeable item: chargeableItems){
+            total = total.add(item.calculateCost());
+        }
+        return total;
+    }
+
+    public ArrayList<HotelService> getServices() { return services; }
+    public ArrayList<Staff> getStaff() { return staff; }
+    public ArrayList<Room> getRooms() { return rooms; }
 
 }

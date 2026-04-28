@@ -33,15 +33,31 @@ public class Booking implements Chargeable{
                 "\nCheck-Out: " + checkOut;
     }
 
-    public BigDecimal calculateTotalCost( ){
+    @Override
+    public BigDecimal calculateCost() {
         long nights = ChronoUnit.DAYS.between(checkIn,checkOut);
         BigDecimal totalCost = getReservedRoom().getNightlyRate().multiply(BigDecimal.valueOf(nights));
         return totalCost;
     }
 
-    //===================================Fix This
-    @Override
-    public BigDecimal calculateCost() {
-        return null;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
