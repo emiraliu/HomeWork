@@ -39,12 +39,35 @@ public class Main {
         hotel.addStaff(housekeepingStaff);
 
         // ===== BOOKINGS =====
-        hotel.makeBooking(1, room101, guest1, LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10));
-        hotel.makeBooking(2, room102, guest1, LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10));
-        hotel.makeBooking(3, room103, guest1, LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10));
-        hotel.makeBooking(4, room101, guest1, LocalDate.of(2026, 6, 5), LocalDate.of(2026, 6, 10));
-        hotel.makeBooking(5, room101, guest1, LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10));
+        try {
+            hotel.makeBooking(1, room101, guest1, LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10));
+        } catch (RoomUnavailableException | InvalidBookingDatesException e) {
+            System.out.println("Booking 1 failed: " + e.getMessage());
+        }
 
+        try {
+            hotel.makeBooking(2, room102, guest1, LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10));
+        } catch (RoomUnavailableException | InvalidBookingDatesException e) {
+            System.out.println("Booking 2 failed: " + e.getMessage());
+        }
+
+        try {
+            hotel.makeBooking(3, room103, guest1, LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10));
+        } catch (RoomUnavailableException | InvalidBookingDatesException e) {
+            System.out.println("Booking 3 failed: " + e.getMessage());
+        }
+
+        try {
+            hotel.makeBooking(4, room101, guest1, LocalDate.of(2026, 6, 5), LocalDate.of(2026, 6, 10));
+        } catch (RoomUnavailableException | InvalidBookingDatesException e) {
+            System.out.println("Booking 4 failed: " + e.getMessage());
+        }
+
+        try {
+            hotel.makeBooking(5, room101, guest1, LocalDate.of(2026, 5, 5), LocalDate.of(2026, 5, 10));
+        } catch (RoomUnavailableException | InvalidBookingDatesException e) {
+            System.out.println("Booking 5 failed: " + e.getMessage());
+        }
         hotel.cancelBooking(3);
 
         // ===== DISPLAY =====
