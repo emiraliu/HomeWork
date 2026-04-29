@@ -22,32 +22,25 @@ public class Hotel {
         rooms.add(room);
     }
 
-    public void makeBooking(int bookingId, Room room, Guest guest, LocalDate checkIn, LocalDate checkOut){
+    public void makeBooking(int bookingId, Room room, Guest guest, LocalDate checkIn, LocalDate checkOut)throws InvalidBookingDatesException,RoomUnavailableException{
 
         if (!checkOut.isAfter(checkIn)){
-            System.out.println("Invalid dates! Check-out must be after check-in.");
-            return;
+            throw new InvalidBookingDatesException("Check-out must be after check-in!");
         }
 
-        boolean isRoomAvailable = true;
         for (Booking booking : bookings){
             if (booking.getReservedRoom().equals(room)){
                 boolean overlaps = checkIn.isBefore(booking.getCheckOut()) &&
                         checkOut.isAfter(booking.getCheckIn());
                 if (overlaps){
-                    isRoomAvailable = false;
-                    break;
+                    throw new RoomUnavailableException("Room " + room.getRoomNumber() + " is not available!");
                 }
             }
         }
 
-        if (isRoomAvailable){
             Booking booking = new Booking(bookingId,room,guest,checkIn,checkOut);
             bookings.add(booking);
             System.out.println("Booking Successful.");
-        }else {
-            System.out.println("Room " + room.getRoomNumber() + " is not Available!");
-        }
     }
 
     public void cancelBooking(int bookingId){
