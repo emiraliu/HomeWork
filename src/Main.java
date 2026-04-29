@@ -102,7 +102,6 @@ public class Main {
         frontDeskStaff.greet();
         frontDeskStaff.greet(guest1.getFirstName());
 
-        // ===== TOTAL CHARGES =====
         System.out.println("\n========== TOTAL CHARGES ==========");
         ArrayList<Chargeable> charges = new ArrayList<>();
         charges.add(cleaningService);
