@@ -6,7 +6,7 @@ public class FrontDeskStaff extends Staff{
 
     @Override
     public void performDuties() {
-        System.out.println(getName() + " started Working!");
+        System.out.println(name + " started Working!");
     }
 
     public void greet(){
@@ -20,8 +20,8 @@ public class FrontDeskStaff extends Staff{
     @Override
     public String toString(){
         return "Role: Front Desk Staff" +
-                "\nStaff Id: " + getStaffId() +
-                "\nName: " + getName() +
-                "\nDepartment: " + getDepartment() + "\n";
+                "\nStaff Id: " + staffId +
+                "\nName: " + name +
+                "\nDepartment: " + department + "\n";
     }
 }

@@ -70,6 +70,12 @@ public class Main {
         }
         hotel.cancelBooking(3);
 
+
+        System.out.println("\n========== BOOKING SPA TREATMENT ==========");
+        System.out.println("Is spa booked? " + spaTreatment.isBookedForDates(LocalDate.of(2026,5,5), LocalDate.of(2026,5,10)));
+        spaTreatment.markAsBooked();
+        System.out.println("After booking - Is spa booked? " + spaTreatment.isBookedForDates(LocalDate.of(2026,5,5), LocalDate.of(2026,5,10)));
+
         // ===== DISPLAY =====
         System.out.println("========== ALL ROOMS ==========");
         hotel.displayAllRooms();
@@ -108,5 +114,9 @@ public class Main {
         charges.add(cleaningService);
         charges.add(spaTreatment);
         System.out.println("Total Charges: " + hotel.calculateTotalCharge(charges));
+
+        System.out.println("\n========== UNIQUE COST CALCULATIONS ==========");
+        System.out.println("Room Cleaning with fee: " + cleaningService.calculateCost("1.20"));
+        System.out.println("Spa Treatment with tip: " + spaTreatment.calculateCost("10.00"));
     }
 }

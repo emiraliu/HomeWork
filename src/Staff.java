@@ -1,6 +1,6 @@
 public abstract class Staff {
-    private int staffId;
-    private String name,department;
+    protected int staffId;
+    protected String name,department;
 
     public Staff(){}
 
