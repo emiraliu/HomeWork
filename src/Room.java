@@ -42,6 +42,21 @@ public class Room implements Bookable{
         return this.roomNumber == other.roomNumber;
     }
 
+    public boolean hasThreeConsecutiveVacantDays(boolean[] occupancy){
+        int consecutiveVacant = 0;
+        for (boolean occupied : occupancy){
+            if (!occupied){
+                consecutiveVacant++;
+                if (consecutiveVacant>=3){
+                    return true;
+                }
+            }else {
+                consecutiveVacant = 0;
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean isBookedForDates(LocalDate checkIn, LocalDate checkOut) {
         return !isAvailable;
@@ -51,4 +66,6 @@ public class Room implements Bookable{
     public void markAsBooked() {
         this.isAvailable = false;
     }
+
+
 }

@@ -18,7 +18,7 @@ public class Main {
         hotel.addNewRoom(room103);
 
         // ===== GUESTS =====
-        Guest guest1 = new Guest(1, "Pers1F", "Pers1S", "pers1@gmail.com");
+        User guest1 = new User("Guest",1, "Pers1F", "Pers1S", "pers1@gmail.com");
         Guest guest2 = new Guest(2, "Pers2F", "Pers2S", "pers2@gmail.com");
         Guest guest3 = new Guest(3, "Pers3F", "Pers3S", "pers3@gmail.com");
 
@@ -107,5 +107,8 @@ public class Main {
         charges.add(cleaningService);
         charges.add(spaTreatment);
         System.out.println("Total Charges: " + hotel.calculateTotalCharge(charges));
+
+        System.out.println("============================================");
+        hotel.printBookingForUser(guest1);
     }
 }

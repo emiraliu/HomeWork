@@ -1,6 +1,6 @@
 public abstract class Staff {
-    private int staffId;
-    private String name,department;
+    protected int staffId;
+    protected String name,department;
 
     public Staff(){}
 
@@ -31,6 +31,14 @@ public abstract class Staff {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public int getHighestPriorityTask(int[] priorities){
+        int highestPriority = 0;
+        for (int i = 0;i< priorities.length;i++){
+            if (priorities[i]< priorities[highestPriority]) highestPriority = i;
+        }
+        return highestPriority;
     }
 
     public abstract void performDuties();

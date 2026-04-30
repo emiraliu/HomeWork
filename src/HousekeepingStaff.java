@@ -6,14 +6,24 @@ public class HousekeepingStaff extends Staff{
 
     @Override
     public void performDuties() {
-        System.out.println(getName() + " is working!");
+        System.out.println(name + " is working!");
+    }
+
+    public int countDirtyRooms(char[] status){
+        int count = 0;
+
+        for (char s : status){
+            if (s == 'D') count++;
+        }
+
+        return count;
     }
 
     @Override
     public String toString(){
         return "Role: Housekeeping Staff" +
-                "\nStaff Id: " + getStaffId() +
-                "\nName: " + getName() +
-                "\nDepartment: " + getDepartment() + "\n";
+                "\nStaff Id: " + staffId +
+                "\nName: " + name +
+                "\nDepartment: " + department + "\n";
     }
 }

@@ -6,7 +6,7 @@ public class FrontDeskStaff extends Staff{
 
     @Override
     public void performDuties() {
-        System.out.println(getName() + " started Working!");
+        System.out.println(name + " started Working!");
     }
 
     public void greet(){
@@ -17,11 +17,30 @@ public class FrontDeskStaff extends Staff{
         System.out.println("Welcome to the hotel, " + guestName + "!");
     }
 
+    public void handleComplaints(String[] complaints){
+        for (String complaint : complaints){
+            switch (complaint){
+                case "wifi":
+                    System.out.println("We will fix the wifi immediately!");
+                    break;
+                case "cleanliness":
+                    System.out.println("We will send housekeeping right away!");
+                    break;
+                case "noise":
+                    System.out.println("We will address the noise issue!");
+                    break;
+                default:
+                    System.out.println("We will look into your complaint");
+                    break;
+            }
+        }
+    }
+
     @Override
     public String toString(){
         return "Role: Front Desk Staff" +
-                "\nStaff Id: " + getStaffId() +
-                "\nName: " + getName() +
-                "\nDepartment: " + getDepartment() + "\n";
+                "\nStaff Id: " + staffId +
+                "\nName: " + name +
+                "\nDepartment: " + department + "\n";
     }
 }

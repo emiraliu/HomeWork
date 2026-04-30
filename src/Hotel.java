@@ -120,6 +120,37 @@ public class Hotel {
         return total;
     }
 
+    public void printBookingForUser(User user){
+        for (Booking booking : bookings){
+            if (booking.getGuest().getGuestId() == user.getGuestId()) System.out.println(booking);
+        }
+    }
+
+    public BigDecimal calculateServiceCostForUser(HotelService[] services){
+        BigDecimal totalCost = BigDecimal.ZERO;
+        for (HotelService service : services){
+            totalCost = totalCost.add(service.calculateCost());
+        }
+        return totalCost;
+    }
+
+    public void addRoomSafe(Room room) throws DuplicateRoomException{
+        for (Room r : rooms){
+            if (r.equals(room)){
+                throw new DuplicateRoomException("Room " + room.getRoomNumber() + " already exists!");
+            }
+        }
+        rooms.add(room);
+    }
+
+    public void checkRoomPricing(Room[] rooms){
+        for (Room room:rooms){
+            if (room.getNightlyRate().compareTo(BigDecimal.ZERO) <= 0){
+                System.out.println("Room " + room.getRoomNumber() + " has invalid price!");
+            }
+        }
+    }
+
     public ArrayList<HotelService> getServices() { return services; }
     public ArrayList<Staff> getStaff() { return staff; }
     public ArrayList<Room> getRooms() { return rooms; }
