@@ -1,7 +1,11 @@
+package rooms;
+
+import interfaces.Bookable;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Room implements Bookable{
+public class Room implements Bookable {
     private int roomNumber;
     private String roomType;
     private BigDecimal nightlyRate;

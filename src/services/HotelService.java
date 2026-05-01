@@ -1,6 +1,10 @@
+package services;
+
+import interfaces.Chargeable;
+
 import java.math.BigDecimal;
 
-public abstract class HotelService implements Chargeable{
+public abstract class HotelService implements Chargeable {
     private int serviceId;
     private String description;
     private BigDecimal baseCost;
@@ -15,6 +19,29 @@ public abstract class HotelService implements Chargeable{
         this.baseCost = baseCost;
     }
 
+
+    public static void applyTierDiscount(double[] costs, char[] tiers){
+     for (int i = 0; i < costs.length;i++){
+         double original = costs[i];
+         double discounted;
+         switch (tiers[i]){
+             case 'A':
+                 discounted = original *0.90;
+                 System.out.println("Original: " + original + " -> Final: " + discounted);
+                 break;
+             case 'B':
+                 discounted = original *0.80;
+                 System.out.println("Original: " + original + " -> Final: " + discounted);
+                 break;
+             case 'C':
+                 discounted = original *0.70;
+                 System.out.println("Original: " + original + " -> Final: " + discounted);
+                 break;
+             default:
+                 System.out.println("Unrecognized discount tier: " + tiers[i]);
+         }
+     }
+    }
 
 
     public int getServiceId() {

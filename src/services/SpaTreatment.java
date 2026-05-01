@@ -1,11 +1,19 @@
-import java.math.BigDecimal;
+package services;
 
-public class SpaTreatment extends HotelService{
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import interfaces.Bookable;
+
+public class SpaTreatment extends HotelService implements Bookable{
+
+    private boolean isBooked;
 
     public SpaTreatment(int serviceId,String description,BigDecimal baseCost){
-        super(serviceId,description,baseCost);
-    }
 
+        super(serviceId,description,baseCost);
+        isBooked= false;
+    }
     @Override
     public BigDecimal calculateCost() {
         return getBaseCost();
@@ -18,6 +26,17 @@ public class SpaTreatment extends HotelService{
     public String toString() {
         return "Service Id: " + getServiceId() +
                 "\nDescription: " + getDescription() +
-                "\nBase Cost: " + getBaseCost() + "\n";
+                "\nBase Cost: " + getBaseCost() +
+                "\nIs Booked: " + isBooked + "\n";
+    }
+
+    @Override
+    public boolean isBookedForDates(LocalDate checkIn, LocalDate checkOut) {
+        return isBooked;
+    }
+
+    @Override
+    public void markAsBooked() {
+        this.isBooked = true;
     }
 }

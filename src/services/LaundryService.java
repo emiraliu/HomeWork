@@ -1,6 +1,8 @@
+package services;
+
 import java.math.BigDecimal;
 
-public class LaundryService extends HotelService{
+public class LaundryService extends HotelService {
 
     public LaundryService(int serviceId, String description, BigDecimal baseCost){
         super(serviceId,description,baseCost);

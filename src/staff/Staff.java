@@ -1,3 +1,5 @@
+package staff;
+
 public abstract class Staff {
     protected int staffId;
     protected String name,department;
@@ -45,7 +47,7 @@ public abstract class Staff {
 
     @Override
     public String toString(){
-        return "Staff Id: " + staffId +
+        return "staff.Staff Id: " + staffId +
                 "\nName: " + name +
                 "\nDepartment: " + department + "\n";
     }

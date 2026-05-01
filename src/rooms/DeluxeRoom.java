@@ -1,6 +1,8 @@
+package rooms;
+
 import java.math.BigDecimal;
 
-public class DeluxeRoom extends Room{
+public class DeluxeRoom extends Room {
 
     private int bedCapacity;
 
@@ -20,8 +22,8 @@ public class DeluxeRoom extends Room{
 
     @Override
     public String toString(){
-        return "\nRoom Number: " + getRoomNumber() +
-                "\nRoom Type: " + getRoomType() +
+        return "\nRooms.Room Number: " + getRoomNumber() +
+                "\nRooms.Room Type: " + getRoomType() +
                 "\nNightly Rate: " + getNightlyRate() +
                 "\nBed Capacity: " + bedCapacity +
                 "\nIs Available: " + isAvailable();

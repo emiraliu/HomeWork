@@ -1,3 +1,19 @@
+package hotel;
+
+import rooms.Room;
+import rooms.DeluxeRoom;
+import guests.Guest;
+import booking.Booking;
+import services.HotelService;
+import staff.Staff;
+import interfaces.Chargeable;
+import exceptions.InvalidBookingDatesException;
+import exceptions.RoomUnavailableException;
+import exceptions.DuplicateRoomException;
+import exceptions.RoomCapacityExceededException;
+import exceptions.DuplicateGuestBookingException;
+import guests.User;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,7 +38,7 @@ public class Hotel {
         rooms.add(room);
     }
 
-    public void makeBooking(int bookingId, Room room, Guest guest, LocalDate checkIn, LocalDate checkOut)throws InvalidBookingDatesException,RoomUnavailableException{
+    public void makeBooking(int bookingId, Room room, Guest guest, LocalDate checkIn, LocalDate checkOut)throws InvalidBookingDatesException, RoomUnavailableException {
 
         if (!checkOut.isAfter(checkIn)){
             throw new InvalidBookingDatesException("Check-out must be after check-in!");
@@ -33,25 +49,25 @@ public class Hotel {
                 boolean overlaps = checkIn.isBefore(booking.getCheckOut()) &&
                         checkOut.isAfter(booking.getCheckIn());
                 if (overlaps){
-                    throw new RoomUnavailableException("Room " + room.getRoomNumber() + " is not available!");
+                    throw new RoomUnavailableException("Rooms.Room " + room.getRoomNumber() + " is not available!");
                 }
             }
         }
 
             Booking booking = new Booking(bookingId,room,guest,checkIn,checkOut);
             bookings.add(booking);
-            System.out.println("Booking Successful.");
+            System.out.println("booking.Booking Successful.");
     }
 
     public void cancelBooking(int bookingId){
         for (Booking booking : bookings){
             if (booking.getBookingId() == bookingId){
                 bookings.remove(booking);
-                System.out.println("Booking "+ bookingId + " cancelled.");
+                System.out.println("booking.Booking "+ bookingId + " cancelled.");
                 return;
             }
         }
-        System.out.println("Booking not found!");
+        System.out.println("booking.Booking not found!");
     }
 
     public void displayAllRooms(){
@@ -134,10 +150,10 @@ public class Hotel {
         return totalCost;
     }
 
-    public void addRoomSafe(Room room) throws DuplicateRoomException{
+    public void addRoomSafe(Room room) throws DuplicateRoomException {
         for (Room r : rooms){
             if (r.equals(room)){
-                throw new DuplicateRoomException("Room " + room.getRoomNumber() + " already exists!");
+                throw new DuplicateRoomException("Rooms.Room " + room.getRoomNumber() + " already exists!");
             }
         }
         rooms.add(room);
@@ -146,9 +162,33 @@ public class Hotel {
     public void checkRoomPricing(Room[] rooms){
         for (Room room:rooms){
             if (room.getNightlyRate().compareTo(BigDecimal.ZERO) <= 0){
-                System.out.println("Room " + room.getRoomNumber() + " has invalid price!");
+                System.out.println("Rooms.Room " + room.getRoomNumber() + " has invalid price!");
             }
         }
+    }
+
+    public void checkRoomCapacity(Room[] rooms, int maxCapacity) throws RoomCapacityExceededException {
+        for (Room room : rooms){
+            if (room instanceof DeluxeRoom deluxeRoom){
+                if (deluxeRoom.getBedCapacity() > maxCapacity){
+                    throw new RoomCapacityExceededException("Rooms.Room " + room.getRoomNumber() +
+                            " exceeds maximum capacity of " + maxCapacity + "!");
+                }
+            }
+        }
+    }
+
+    public void checkDuplicateGuestBookings(Room[] rooms) throws DuplicateGuestBookingException {
+        for (int i = 0;i< bookings.size();i++){
+            for (int j=i+1;j<bookings.size();j++){
+                if (bookings.get(i).getGuest().getGuestId() ==
+                    bookings.get(j).getGuest().getGuestId()){
+                    throw new DuplicateGuestBookingException("Guests.Guest ID " + bookings.get(i).getGuest().getGuestId() +
+                        " has duplicate bookings!");
+                }
+            }
+        }
+        System.out.println("No duplicate guest bookings found!");
     }
 
     public ArrayList<HotelService> getServices() { return services; }

@@ -1,4 +1,6 @@
-public class FrontDeskStaff extends Staff{
+package staff;
+
+public class FrontDeskStaff extends Staff {
 
     public FrontDeskStaff(int staffId,String name, String department){
         super(staffId,name,department);
@@ -38,8 +40,8 @@ public class FrontDeskStaff extends Staff{
 
     @Override
     public String toString(){
-        return "Role: Front Desk Staff" +
-                "\nStaff Id: " + staffId +
+        return "Role: Front Desk staff.Staff" +
+                "\nstaff.Staff Id: " + staffId +
                 "\nName: " + name +
                 "\nDepartment: " + department + "\n";
     }

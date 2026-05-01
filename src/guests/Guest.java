@@ -1,3 +1,5 @@
+package guests;
+
 public class Guest {
 
     private int guestId;
@@ -23,7 +25,7 @@ public class Guest {
 
     @Override
     public String toString(){
-        return "\nGuest Id: " + guestId +
+        return "\nGuests.Guest Id: " + guestId +
                 "\nFirst Name: " + firstName +
                 "\nLast Name: " + lastName +
                 "\nEmail: " + email;

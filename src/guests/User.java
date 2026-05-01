@@ -1,4 +1,6 @@
-public class User extends Guest{
+package guests;
+
+public class User extends Guest {
 
     private String role;
 
@@ -28,7 +30,7 @@ public class User extends Guest{
     @Override
     public String toString(){
         return "\nRole: " + role +
-                "\nGuest Id: " + getGuestId() +
+                "\nGuests.Guest Id: " + getGuestId() +
                 "\nFirst Name: " + getFirstName() +
                 "\nLast Name: " + getLastName() +
                 "\nEmail: " + getEmail();
